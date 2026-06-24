@@ -3,6 +3,7 @@ import { useLocalStorage } from './hooks/useLocalStorage'
 import BudgetSummary from './components/BudgetSummary'
 import ItineraryForm from './components/ItineraryForm'
 import ItineraryList from './components/ItineraryList'
+import ItineraryPreview from './components/ItineraryPreview'
 
 // ID unik tanpa dependency eksternal. crypto.randomUUID di browser modern,
 // fallback ke timestamp+random untuk lingkungan lama.
@@ -45,14 +46,28 @@ export default function App() {
 
         <BudgetSummary items={items} />
 
-        <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-2">
-          <ItineraryForm
-            onSubmit={handleSubmit}
-            editing={editing}
-            onCancelEdit={() => setEditing(null)}
-          />
-          <ItineraryList items={items} onEdit={setEditing} onDelete={handleDelete} />
+        <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-5">
+          {/* Form: sticky di layar besar agar tetap terlihat saat list panjang. */}
+          <div className="lg:col-span-2">
+            <div className="lg:sticky lg:top-6">
+              <ItineraryForm
+                onSubmit={handleSubmit}
+                editing={editing}
+                onCancelEdit={() => setEditing(null)}
+              />
+            </div>
+          </div>
+
+          <div className="lg:col-span-3">
+            <div className="mb-3 flex items-center justify-between">
+              <h2 className="text-lg font-semibold text-slate-800">Daftar Perjalanan</h2>
+              <span className="text-sm text-slate-500">{items.length} destinasi</span>
+            </div>
+            <ItineraryList items={items} onEdit={setEditing} onDelete={handleDelete} />
+          </div>
         </div>
+
+        <ItineraryPreview items={items} />
 
         <footer className="mt-10 text-center text-xs text-slate-400">
           Dibuat dengan React + Vite + Tailwind CSS · Client-side only

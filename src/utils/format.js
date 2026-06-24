@@ -45,6 +45,19 @@ export function formatDateRange(startDate, endDate) {
   return start || end || '-'
 }
 
+// Rentang tanggal keseluruhan trip: tanggal paling awal s/d paling akhir
+// dari seluruh item. Mengembalikan null kalau tak ada tanggal sama sekali.
+export function tripDateRange(items) {
+  const dates = []
+  for (const it of items) {
+    if (it.startDate) dates.push(it.startDate)
+    if (it.endDate) dates.push(it.endDate)
+  }
+  if (dates.length === 0) return null
+  const sorted = [...dates].sort()
+  return formatDateRange(sorted[0], sorted[sorted.length - 1])
+}
+
 // Ambil hanya digit dari input lalu jadikan number (untuk field biaya).
 export function parseNumber(value) {
   const digits = String(value).replace(/\D/g, '')
