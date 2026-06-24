@@ -5,7 +5,7 @@ const EMPTY = {
   destination: '',
   startDate: '',
   endDate: '',
-  transport: TRANSPORT_OPTIONS[0],
+  transport: '', // belum dipilih
   transportCost: '',
   lodgingCost: '',
   otherCost: '',
@@ -22,7 +22,7 @@ export default function ItineraryForm({ onSubmit, editing, onCancelEdit }) {
         destination: editing.destination ?? '',
         startDate: editing.startDate ?? '',
         endDate: editing.endDate ?? '',
-        transport: editing.transport ?? TRANSPORT_OPTIONS[0],
+        transport: editing.transport ?? '',
         transportCost: formatNumberInput(editing.transportCost ?? ''),
         lodgingCost: formatNumberInput(editing.lodgingCost ?? ''),
         otherCost: formatNumberInput(editing.otherCost ?? ''),
@@ -71,12 +71,12 @@ export default function ItineraryForm({ onSubmit, editing, onCancelEdit }) {
       className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
     >
       <h2 className="mb-4 text-lg font-semibold text-slate-800">
-        {editing ? 'Edit Destinasi' : 'Tambah Destinasi'}
+        {editing ? 'Edit Agenda' : 'Tambah Agenda'}
       </h2>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div className="sm:col-span-2">
-          <label className={label} htmlFor="destination">Nama Destinasi</label>
+          <label className={label} htmlFor="destination">Nama Agenda</label>
           <input
             id="destination"
             name="destination"
@@ -84,7 +84,7 @@ export default function ItineraryForm({ onSubmit, editing, onCancelEdit }) {
             required
             value={form.destination}
             onChange={handleChange}
-            placeholder="mis. Pantai Kuta, Bali"
+            placeholder="mis. Pantai Kuta, Tiket Kereta, Hotel"
             className={field}
           />
         </div>
@@ -123,6 +123,7 @@ export default function ItineraryForm({ onSubmit, editing, onCancelEdit }) {
             onChange={handleChange}
             className={field}
           >
+            <option value="" disabled>Pilih moda transportasi</option>
             {TRANSPORT_OPTIONS.map((opt) => (
               <option key={opt} value={opt}>{opt}</option>
             ))}
@@ -186,7 +187,7 @@ export default function ItineraryForm({ onSubmit, editing, onCancelEdit }) {
           type="submit"
           className="rounded-lg bg-indigo-600 px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-300"
         >
-          {editing ? 'Simpan Perubahan' : 'Tambah ke Itinerary'}
+          {editing ? 'Simpan Perubahan' : 'Tambah Agenda'}
         </button>
         {editing && (
           <button

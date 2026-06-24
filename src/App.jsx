@@ -61,7 +61,7 @@ export default function App() {
           <div className="lg:col-span-3">
             <div className="mb-3 flex items-center justify-between">
               <h2 className="text-lg font-semibold text-slate-800">Daftar Perjalanan</h2>
-              <span className="text-sm text-slate-500">{items.length} destinasi</span>
+              <span className="text-sm text-slate-500">{items.length} agenda</span>
             </div>
             <ItineraryList items={items} onEdit={setEditing} onDelete={handleDelete} />
           </div>

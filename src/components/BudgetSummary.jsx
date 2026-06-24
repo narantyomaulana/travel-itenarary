@@ -23,7 +23,7 @@ export default function BudgetSummary({ items }) {
           {formatIDR(grandTotal)}
         </span>
         <span className="text-sm text-indigo-100">
-          {items.length} destinasi
+          {items.length} agenda
           {range ? ` · ${range}` : ''}
         </span>
       </div>

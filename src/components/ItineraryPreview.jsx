@@ -24,7 +24,8 @@ export default function ItineraryPreview({ items }) {
             <div className="min-w-0 flex-1">
               <div className="truncate font-medium text-slate-800">{item.destination}</div>
               <div className="text-xs text-slate-500">
-                {formatDateRange(item.startDate, item.endDate)} · {item.transport}
+                {formatDateRange(item.startDate, item.endDate)}
+                {item.transport ? ` · ${item.transport}` : ''}
               </div>
             </div>
             <div className="flex-none text-right font-semibold text-slate-700">

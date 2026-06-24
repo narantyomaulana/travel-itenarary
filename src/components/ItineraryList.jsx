@@ -6,7 +6,7 @@ export default function ItineraryList({ items, onEdit, onDelete }) {
     return (
       <div className="rounded-2xl border border-dashed border-slate-300 bg-white p-10 text-center">
         <p className="text-slate-500">
-          Belum ada destinasi. Tambahkan lewat form di samping.
+          Belum ada agenda. Tambahkan lewat form di samping.
         </p>
       </div>
     )
@@ -32,9 +32,11 @@ export default function ItineraryList({ items, onEdit, onDelete }) {
                 <h3 className="truncate font-semibold text-slate-800">{item.destination}</h3>
                 <p className="mt-0.5 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-slate-500">
                   <span>{formatDateRange(item.startDate, item.endDate)}</span>
-                  <span className="rounded-full bg-indigo-50 px-2 py-0.5 font-medium text-indigo-700">
-                    {item.transport}
-                  </span>
+                  {item.transport && (
+                    <span className="rounded-full bg-indigo-50 px-2 py-0.5 font-medium text-indigo-700">
+                      {item.transport}
+                    </span>
+                  )}
                 </p>
               </div>
               <div className="flex flex-none items-center gap-1">
